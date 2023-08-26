@@ -3,7 +3,7 @@ import './Loading.css';
 function Loading() {
   return (
     <div className="flex center-all column">
-      <h2>Carregando...</h2>
+      <h1>Carregando...</h1>
       <div className="spinner" />
     </div>
   );

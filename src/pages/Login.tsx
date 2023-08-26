@@ -5,18 +5,18 @@ import Loading from '../components/Loading';
 
 function Login() {
   const [nameInput, setNameInput] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const validLength = nameInput.length >= 3;
 
   const handleClick = async () => {
-    setLoading(true);
+    setIsLoading(true);
     await createUser({ name: nameInput });
     navigate('/search');
   };
 
-  if (loading) {
+  if (isLoading) {
     return <Loading />;
   }
 
