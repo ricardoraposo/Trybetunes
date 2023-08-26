@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [nameInput, setNameInput] = useState('');
@@ -13,7 +13,7 @@ function Login() {
   const handleClick = async () => {
     setLoading(true);
     await createUser({ name: nameInput });
-    navigate("/search");
+    navigate('/search');
   };
 
   if (loading) {
