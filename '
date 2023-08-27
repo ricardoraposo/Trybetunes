@@ -1,0 +1,24 @@
+import { useEffect, useState } from "react";
+import { SongType } from "../types";
+import { getFavoriteSongs } from "../services/favoriteSongsAPI";
+
+function Favorites() {
+  const [favoriteSongs, setFavoriteSongs] = useState<SongType[]>([]);
+
+  const fetchFavoriteMovies = async () => {
+    const favorites = getFavoriteSongs();
+    setFavoriteSongs(favorites);
+  };
+
+
+  useEffect(() => {
+  }, [])
+
+  return (
+    <div>
+      These are my favorite movies
+    </div>
+  );
+}
+
+export default Favorites;
