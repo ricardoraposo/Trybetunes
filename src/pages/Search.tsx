@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import { AlbumType } from '../types';
 import Loading from '../components/Loading';
-import Album from '../components/Album';
-import '../components/Album.css';
+import AlbumCardList from '../components/AlbumCardList';
+import type { AlbumType } from '../types';
 
 function Search() {
   const [artistInput, setArtistInput] = useState('');
@@ -41,16 +39,7 @@ function Search() {
       </button>
       {isLoading && <Loading />}
       {searched && !isLoading && albumList.length > 0 ? (
-        <div>
-          <h2>{`Resultado de álbuns de: ${albumList[0].artistName}`}</h2>
-          <div className="album-list">
-            {
-              albumList.map((album) => (
-                <Album key={ album.collectionId } album={ album } />
-              ))
-            }
-          </div>
-        </div>
+        <AlbumCardList albumList={ albumList } />
       ) : searched && !isLoading && albumList.length === 0 && (
         <h2>Nenhum álbum foi encontrado</h2>
       )}

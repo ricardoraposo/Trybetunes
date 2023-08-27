@@ -6,7 +6,7 @@ type AlbumPropsType = {
   album: AlbumType;
 };
 
-function Album({ album }: AlbumPropsType) {
+function AlbumCard({ album }: AlbumPropsType) {
   return (
     <div className="album">
       <img
@@ -25,4 +25,4 @@ function Album({ album }: AlbumPropsType) {
   );
 }
 
-export default Album;
+export default AlbumCard;
