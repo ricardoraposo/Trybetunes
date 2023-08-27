@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { SongType } from '../types';
 import checkedheart from '../images/checked_heart.png';
 import emptyHeart from '../images/empty_heart.png';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import type { SongType } from '../types';
 
 type MusicCardProps = {
   song: SongType;
@@ -9,6 +10,16 @@ type MusicCardProps = {
 
 function MusicCard({ song }: MusicCardProps) {
   const [favorited, setFavorited] = useState(false);
+
+  const handleChange = (songItem: SongType) => {
+    setFavorited(!favorited);
+    if (favorited) {
+      removeSong(songItem);
+    } else {
+      addSong(songItem);
+    }
+  };
+
   return (
     <div key={ song.trackId }>
       <p>{song.trackName}</p>
@@ -31,13 +42,10 @@ function MusicCard({ song }: MusicCardProps) {
           }
         </label>
         <input
+          type="checkbox"
           id={ `favorited-${song.trackId}` }
           checked={ favorited }
-          onChange={ () => {
-            setFavorited(!favorited);
-            console.log(favorited);
-          } }
-          type="checkbox"
+          onChange={ () => handleChange(song) }
         />
       </div>
     </div>
