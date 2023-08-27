@@ -6,13 +6,16 @@ import type { AlbumType } from '../types';
 
 function Search() {
   const [artistInput, setArtistInput] = useState('');
+  const [artistName, setArtistName] = useState('');
   const [albumList, setAlbumList] = useState<AlbumType[]>([]);
   const [searched, setSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const validLength = artistInput.length >= 2;
 
   const fetchAlbuns = async () => {
     setIsLoading(true);
+    setArtistName(artistInput);
 
     const albuns = await searchAlbumsAPI(artistInput);
 
@@ -39,7 +42,7 @@ function Search() {
       </button>
       {isLoading && <Loading />}
       {searched && !isLoading && albumList.length > 0 ? (
-        <AlbumCardList albumList={ albumList } />
+        <AlbumCardList artistName={ artistName } albumList={ albumList } />
       ) : searched && !isLoading && albumList.length === 0 && (
         <h2>Nenhum álbum foi encontrado</h2>
       )}
