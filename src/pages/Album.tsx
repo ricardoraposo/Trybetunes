@@ -4,6 +4,7 @@ import getMusics from '../services/musicsAPI';
 import { AlbumType, SongType } from '../types';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 function Album() {
   const [albumInfo, setAlbumInfo] = useState<AlbumType>({
@@ -17,6 +18,7 @@ function Album() {
     trackCount: 0,
   });
   const [albumSongs, setAlbumSongs] = useState<SongType[]>([]);
+  const [favoritedSongs, setFavoritedSongs] = useState<SongType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
@@ -24,8 +26,10 @@ function Album() {
     const fetchSongs = async () => {
       if (id) {
         const songs = await getMusics(id);
+        const favorited = await getFavoriteSongs();
         setAlbumInfo(songs[0]);
         setAlbumSongs([...songs.slice(1)] as SongType[]);
+        setFavoritedSongs(favorited);
         setIsLoading(false);
       }
     };
@@ -44,7 +48,11 @@ function Album() {
           <h1 data-testid="album-name">{albumInfo.collectionName}</h1>
           <div>
             {albumSongs.map((song) => (
-              <MusicCard key={ song.trackId } song={ song } />
+              <MusicCard
+                key={ song.trackId }
+                song={ song }
+                initFav={ favoritedSongs.some((fav) => song.trackId === fav.trackId) }
+              />
             ))}
           </div>
         </div>

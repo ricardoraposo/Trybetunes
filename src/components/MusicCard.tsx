@@ -6,10 +6,11 @@ import type { SongType } from '../types';
 
 type MusicCardProps = {
   song: SongType;
+  initFav: boolean;
 };
 
-function MusicCard({ song }: MusicCardProps) {
-  const [favorited, setFavorited] = useState(false);
+function MusicCard({ song, initFav }: MusicCardProps) {
+  const [favorited, setFavorited] = useState(initFav);
 
   const handleChange = (songItem: SongType) => {
     setFavorited(!favorited);
