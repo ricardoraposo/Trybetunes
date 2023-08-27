@@ -22,7 +22,7 @@ function MusicCard({ song }: MusicCardProps) {
       <div>
         <label
           data-testid={ `checkbox-music-${song.trackId}` }
-          htmlFor={`favorited-${song.trackId}`}
+          htmlFor={ `favorited-${song.trackId}` }
         >
           {
             favorited
