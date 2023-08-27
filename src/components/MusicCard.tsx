@@ -1,4 +1,4 @@
-import { AlbumType, SongType } from '../types';
+import { SongType } from '../types';
 
 type MusicCardProps = {
   song: SongType;
