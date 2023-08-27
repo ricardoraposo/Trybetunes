@@ -16,7 +16,7 @@ function Album() {
     releaseDate: '',
     trackCount: 0,
   });
-  const [albumSongs, setAlbumSongs] = useState<SongType[]>([]);
+  const [albumSongs, setAlbumSongs] = useState<Array<AlbumType | SongType>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
@@ -24,8 +24,8 @@ function Album() {
     const fetchSongs = async () => {
       if (id) {
         const songs = await getMusics(id);
-        setAlbumInfo(songs.album);
-        setAlbumSongs(songs.songs);
+        setAlbumInfo(songs[0]);
+        setAlbumSongs([...songs.slice(1)]);
         setIsLoading(false);
       }
     };
@@ -38,15 +38,20 @@ function Album() {
 
   return (
     <div>
-      {albumSongs && (
+      {albumSongs.length > 0 ? (
         <div>
           <h1 data-testid="artist-name">{albumInfo.artistName}</h1>
           <h1 data-testid="album-name">{albumInfo.collectionName}</h1>
           <div>
             {albumSongs.map((song) => (
-              <MusicCard key={ song.trackId } song={ song } />
+              <MusicCard key={ (song as SongType).trackId } song={ (song as SongType) } />
             ))}
           </div>
+        </div>
+      ) : (
+        <div>
+          <h1 data-testid="artist-name">Artista inexistente</h1>
+          <h1 data-testid="album-name">Album inexistente</h1>
         </div>
       )}
     </div>
