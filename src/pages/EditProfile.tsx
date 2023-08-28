@@ -31,15 +31,15 @@ function EditProfile({ userInfo, setUserInfo }: HeaderProps) {
 
   const valid = validateFields();
 
-  const fetchUserInfo = async () => {
-    const user = await getUser();
-    setUserInfo(user);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const fetchUserInfo = async () => {
+      const user = await getUser();
+      setUserInfo(user);
+      setIsLoading(false);
+    };
+
     fetchUserInfo();
-  }, []);
+  }, [setUserInfo]);
 
   if (isLoading) return <Loading />;
 
