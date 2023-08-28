@@ -22,8 +22,11 @@ function Login() {
   }
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <div className="flex flex-col">
+    <div
+      className="h-screen w-screen bg-gradient-to-br
+      from-blue-600 to-cyan-300 flex justify-center items-center"
+    >
+      <div className="flex flex-col bg-white py-24 px-64 rounded-3xl shadow-lg">
         <img src={ trybeTunesLogo } alt="" className="h-48" />
         <div className="mt-10 border-red-300 flex flex-col w-full gap-5">
           <input
