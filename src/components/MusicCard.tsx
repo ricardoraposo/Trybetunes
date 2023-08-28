@@ -25,8 +25,8 @@ function MusicCard({ song, initFav, toggleFavorite = null }: MusicCardProps) {
 
   return (
     <div className="flex flex-col text-lg">
-      <div className="w-[700px] flex justify-between items-center">
-        <p className="w-64">{song.trackName}</p>
+      <div className="w-full flex justify-between items-center gap-2">
+        <p className="w-56">{song.trackName}</p>
         <audio data-testid="audio-component" src={ song.previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento

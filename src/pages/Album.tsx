@@ -43,7 +43,7 @@ function Album() {
             <img
               src={ albumInfo?.artworkUrl100 }
               alt="Album cover"
-              className="w-96 h-96 mx-32 rounded-xl shadow-2xl"
+              className="w-96 h-96 mx-16 rounded-xl shadow-2xl"
             />
             <div className="translate-y-12">
               <div className="mb-36">
