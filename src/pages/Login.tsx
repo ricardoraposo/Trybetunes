@@ -17,10 +17,6 @@ function Login() {
     navigate('/search');
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
     <div
       className="h-screen w-screen bg-gradient-to-br
@@ -47,6 +43,7 @@ function Login() {
           >
             Entrar
           </button>
+          {isLoading && <Loading />}
         </div>
       </div>
     </div>

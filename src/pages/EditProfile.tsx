@@ -4,15 +4,14 @@ import { getUser, updateUser } from '../services/userAPI';
 import { UserType } from '../types';
 import Loading from '../components/Loading';
 
-function EditProfile() {
+type HeaderProps = {
+  userInfo: UserType;
+  setUserInfo: (user: UserType) => void;
+};
+
+function EditProfile({ userInfo, setUserInfo }: HeaderProps) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState<UserType>({
-    name: '',
-    email: '',
-    image: '',
-    description: '',
-  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

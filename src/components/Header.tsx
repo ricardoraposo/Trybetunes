@@ -6,19 +6,22 @@ import { getUser } from '../services/userAPI';
 import type { UserType } from '../types';
 import trybeTunesLogo from '../images/trybetunes_logo.svg';
 
-function Header() {
-  const [userInfo, setUserInfo] = useState<UserType | null>(null);
+type HeaderProps = {
+  userInfo: UserType | null;
+  setUserInfo: (user: UserType) => void;
+};
+
+function Header({ userInfo, setUserInfo }: HeaderProps) {
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchUserData = async () => {
-    const user = await getUser();
-    setUserInfo(user);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const fetchUserData = async () => {
+      const user = await getUser();
+      setUserInfo(user);
+      setIsLoading(false);
+    };
     fetchUserData();
-  }, []);
+  }, [setUserInfo]);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -64,12 +67,14 @@ function Header() {
             <p className="flex text-2xl items-center mb-6">Carregando...</p>
           ) : (
             <div className="flex my-auto  mb-6 gap-2">
-              {userInfo?.image && (
+              {userInfo?.image ? (
                 <img
                   src={ userInfo.image }
                   alt="small face of the user"
                   className="w-12 h-12 rounded-full"
                 />
+              ) : (
+                <CgProfile className="w-12 h-12 text-gray-400" />
               )}
               <p
                 data-testid="header-user-name"
