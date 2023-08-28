@@ -7,16 +7,7 @@ import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 function Album() {
-  const [albumInfo, setAlbumInfo] = useState<AlbumType>({
-    artistId: 0,
-    artistName: '',
-    collectionId: 0,
-    collectionName: '',
-    collectionPrice: 0,
-    artworkUrl100: '',
-    releaseDate: '',
-    trackCount: 0,
-  });
+  const [albumInfo, setAlbumInfo] = useState<AlbumType | undefined>(undefined);
   const [albumSongs, setAlbumSongs] = useState<SongType[]>([]);
   const [favoritedSongs, setFavoritedSongs] = useState<SongType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,8 +35,8 @@ function Album() {
     <div>
       {albumSongs.length > 0 ? (
         <div>
-          <h1 data-testid="artist-name">{albumInfo.artistName}</h1>
-          <h1 data-testid="album-name">{albumInfo.collectionName}</h1>
+          <h1 data-testid="artist-name">{albumInfo?.artistName}</h1>
+          <h1 data-testid="album-name">{albumInfo?.collectionName}</h1>
           <div>
             {albumSongs.map((song) => (
               <MusicCard

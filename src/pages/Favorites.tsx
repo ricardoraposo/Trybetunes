@@ -16,6 +16,10 @@ function Favorites() {
     setIsLoading(false);
   };
 
+  const handleToggle = () => {
+    setToggleFavorite(!toggleFavorite);
+  };
+
   useEffect(() => {
     fetchFavoriteMovies();
   }, [toggleFavorite]);
@@ -30,8 +34,7 @@ function Favorites() {
             <MusicCard
               key={ song.trackId }
               song={ song }
-              toggleFavorite={ setToggleFavorite }
-              didFavorite={ toggleFavorite }
+              toggleFavorite={ handleToggle }
               initFav
             />
           ))

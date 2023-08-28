@@ -7,16 +7,14 @@ import type { SongType } from '../types';
 type MusicCardProps = {
   song: SongType;
   initFav: boolean;
-  didFavorite?: boolean;
-  toggleFavorite?: null | ((didToggle: boolean) => void);
+  toggleFavorite?: (() => void) | null;
 };
 
-function MusicCard({
-  song, initFav, toggleFavorite = null, didFavorite = false }: MusicCardProps) {
+function MusicCard({ song, initFav, toggleFavorite = null }: MusicCardProps) {
   const [favorited, setFavorited] = useState(initFav);
 
   const handleChange = (songItem: SongType) => {
-    if (toggleFavorite) toggleFavorite(!didFavorite);
+    if (toggleFavorite) toggleFavorite();
     setFavorited(!favorited);
     if (favorited) {
       removeSong(songItem);
