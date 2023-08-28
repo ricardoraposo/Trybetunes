@@ -24,33 +24,37 @@ function MusicCard({ song, initFav, toggleFavorite = null }: MusicCardProps) {
   };
 
   return (
-    <div key={ song.trackId }>
-      <p>{song.trackName}</p>
-      <audio data-testid="audio-component" src={ song.previewUrl } controls>
-        <track kind="captions" />
-        O seu navegador não suporta o elemento
-        {' '}
-        <code>audio</code>
-        .
-      </audio>
-      <div>
-        <label
-          data-testid={ `checkbox-music-${song.trackId}` }
-          htmlFor={ `favorited-${song.trackId}` }
-        >
-          {
-            favorited
-              ? (<img src={ checkedheart } alt="favorite" />)
-              : (<img src={ emptyHeart } alt="favorite" />)
-          }
-        </label>
-        <input
-          type="checkbox"
-          id={ `favorited-${song.trackId}` }
-          checked={ favorited }
-          onChange={ () => handleChange(song) }
-        />
+    <div className="flex flex-col text-lg">
+      <div className="w-[700px] flex justify-between items-center">
+        <p className="w-64">{song.trackName}</p>
+        <audio data-testid="audio-component" src={ song.previewUrl } controls>
+          <track kind="captions" />
+          O seu navegador não suporta o elemento
+          {' '}
+          <code>audio</code>
+          .
+        </audio>
+        <div>
+          <label
+            data-testid={ `checkbox-music-${song.trackId}` }
+            htmlFor={ `favorited-${song.trackId}` }
+          >
+            {
+              favorited
+                ? (<img src={ checkedheart } alt="favorite" />)
+                : (<img src={ emptyHeart } alt="favorite" />)
+            }
+          </label>
+          <input
+            type="checkbox"
+            id={ `favorited-${song.trackId}` }
+            checked={ favorited }
+            onChange={ () => handleChange(song) }
+            className="hidden"
+          />
+        </div>
       </div>
+      <div className="w-full border-t-2 mx-auto my-6" />
     </div>
   );
 }

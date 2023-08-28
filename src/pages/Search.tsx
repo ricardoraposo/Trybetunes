@@ -49,11 +49,19 @@ function Search() {
           Procurar
         </button>
       </div>
-      {isLoading && <Loading />}
+      {isLoading && (
+        <div className="mt-32 text-3xl">
+          <Loading />
+        </div>
+      )}
       {searched && !isLoading && albumList.length > 0 ? (
         <AlbumCardList artistName={ artistName } albumList={ albumList } />
       ) : searched && !isLoading && albumList.length === 0 && (
-        <h2>Nenhum álbum foi encontrado</h2>
+        <h2
+          className="text-center text-4xl text-gray-300 my-40"
+        >
+          Nenhum álbum foi encontrado
+        </h2>
       )}
     </>
   );

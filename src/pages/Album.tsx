@@ -32,28 +32,45 @@ function Album() {
   }
 
   return (
-    <div>
-      {albumSongs.length > 0 ? (
-        <div>
-          <h1 data-testid="artist-name">{albumInfo?.artistName}</h1>
-          <h1 data-testid="album-name">{albumInfo?.collectionName}</h1>
-          <div>
-            {albumSongs.map((song) => (
-              <MusicCard
-                key={ song.trackId }
-                song={ song }
-                initFav={ favoritedSongs.some((fav) => song.trackId === fav.trackId) }
-              />
-            ))}
+    <>
+      <div
+        className="bg-gradient-to-br from-blue-900 via-blue-500 to-sky-200 h-80
+        flex justify-center items-center shadow-sm gap-2"
+      />
+      <div className="-translate-y-44">
+        {albumSongs.length > 0 ? (
+          <div className="flex">
+            <img
+              src={ albumInfo?.artworkUrl100 }
+              alt="Album cover"
+              className="w-96 h-96 mx-32 rounded-xl shadow-2xl"
+            />
+            <div className="translate-y-12">
+              <div className="mb-36">
+                <h1 className="text-3xl font-bold text-white" data-testid="artist-name">
+                  {albumInfo?.artistName}
+                </h1>
+                <h1 className="text-lg text-white/80" data-testid="album-name">
+                  {albumInfo?.collectionName}
+                </h1>
+              </div>
+              {albumSongs.map((song) => (
+                <MusicCard
+                  key={ song.trackId }
+                  song={ song }
+                  initFav={ favoritedSongs.some((fav) => song.trackId === fav.trackId) }
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div>
-          <h1 data-testid="artist-name">Artista inexistente</h1>
-          <h1 data-testid="album-name">Album inexistente</h1>
-        </div>
-      )}
-    </div>
+        ) : (
+          <div>
+            <h1 data-testid="artist-name">Artista inexistente</h1>
+            <h1 data-testid="album-name">Album inexistente</h1>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
