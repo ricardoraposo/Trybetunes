@@ -21,7 +21,10 @@ function Header() {
 
   return (
     <>
-      <header data-testid="header-component">
+      <header
+        data-testid="header-component"
+        className="bg-red-500 text-3xl"
+      >
         <div>
           <NavLink
             data-testid="link-to-search"

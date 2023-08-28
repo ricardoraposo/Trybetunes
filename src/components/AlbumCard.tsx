@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { AlbumType } from '../types';
-import './Album.css';
 
 type AlbumPropsType = {
   album: AlbumType;

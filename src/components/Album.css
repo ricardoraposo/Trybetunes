@@ -1,9 +1,0 @@
-.album-list {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.album {
-  display: flex;
-  flex-direction: column;
-}

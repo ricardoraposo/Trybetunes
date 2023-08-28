@@ -1,6 +1,5 @@
 import { AlbumType } from '../types';
 import AlbumCard from './AlbumCard';
-import './Album.css';
 
 type AlbumListProps = {
   albumList: AlbumType[];
@@ -11,7 +10,7 @@ function AlbumCardList({ albumList, artistName }: AlbumListProps) {
   return (
     <div>
       <h2>{`Resultado de álbuns de: ${artistName}`}</h2>
-      <div className="album-list">
+      <div>
         {
           albumList.map((album) => (
             <AlbumCard key={ album.collectionId } album={ album } />
