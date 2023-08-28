@@ -21,10 +21,10 @@ function Header() {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden">
       <header
         data-testid="header-component"
-        className="text-lg h-screen flex flex-col
+        className="text-lg flex flex-col w-1/5 bg-transparent
         justify-between items-center px-12 shadow-lg"
       >
         <div className="mt-3">
@@ -81,7 +81,9 @@ function Header() {
           )}
         </div>
       </header>
-      <Outlet />
+      <div className="overflow-y-auto w-full">
+        <Outlet />
+      </div>
     </div>
   );
 }
