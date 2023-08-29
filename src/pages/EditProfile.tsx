@@ -4,14 +4,19 @@ import { getUser, updateUser } from '../services/userAPI';
 import { UserType } from '../types';
 import Loading from '../components/Loading';
 
-type HeaderProps = {
-  userInfo: UserType;
-  setUserInfo: (user: UserType) => void;
+type EditProps = {
+  toggleRefresh: () => void;
 };
 
-function EditProfile({ userInfo, setUserInfo }: HeaderProps) {
+function EditProfile({ toggleRefresh }: EditProps) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<UserType>({
+    name: '',
+    email: '',
+    image: '',
+    description: '',
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -22,6 +27,7 @@ function EditProfile({ userInfo, setUserInfo }: HeaderProps) {
     setIsLoading(true);
     await updateUser(userInfo);
     navigate('/profile');
+    toggleRefresh();
   };
 
   const validateFields = (): boolean => {

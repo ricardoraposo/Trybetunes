@@ -3,15 +3,15 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { AiOutlineStar, AiOutlineSearch } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { getUser } from '../services/userAPI';
-import type { UserType } from '../types';
 import trybeTunesLogo from '../images/trybetunes_logo.svg';
+import { UserType } from '../types';
 
 type HeaderProps = {
-  userInfo: UserType | null;
-  setUserInfo: (user: UserType) => void;
+  shouldRefresh: boolean;
 };
 
-function Header({ userInfo, setUserInfo }: HeaderProps) {
+function Header({ shouldRefresh }: HeaderProps) {
+  const [userInfo, setUserInfo] = useState<UserType | null>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Header({ userInfo, setUserInfo }: HeaderProps) {
       setIsLoading(false);
     };
     fetchUserData();
-  }, [setUserInfo]);
+  }, [shouldRefresh]);
 
   return (
     <div className="flex h-screen overflow-hidden">
