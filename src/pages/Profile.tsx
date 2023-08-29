@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CgProfile } from 'react-icons/cg';
 import { UserType } from '../types';
 import { getUser } from '../services/userAPI';
 import Loading from '../components/Loading';
@@ -29,13 +30,21 @@ function Profile() {
       {userInfo && (
         <div className="flex mx-auto w-3/4">
           <div className="flex justify-center gap-6">
-            <img
-              data-testid="profile-image"
-              src={ userInfo.image }
-              alt="user profile"
-              className="h-80 w-80 rounded-full shadow-2xl drop-shadow-2xl
+            {
+              userInfo.image ? (
+                <img
+                  data-testid="profile-image"
+                  src={ userInfo.image }
+                  alt="user profile"
+                  className="h-80 w-80 rounded-full shadow-2xl drop-shadow-2xl
               -translate-y-1/2"
-            />
+                />
+              ) : (
+                <CgProfile
+                  className="h-80 w-80 -translate-y-1/2 rounded-full text-gray-400/60"
+                />
+              )
+            }
             <div className="flex flex-col gap-6 translate-y-8">
               <div>
                 <p className="text-2xl font-bold text-gray-600">Nome</p>
