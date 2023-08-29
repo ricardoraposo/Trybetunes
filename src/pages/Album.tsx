@@ -35,7 +35,7 @@ function Album() {
     <>
       <div
         className="bg-gradient-to-br from-blue-900 via-blue-500 to-sky-200 h-80
-        flex justify-center items-center shadow-sm gap-2"
+        flex justify-center items-center shadow-sm drop-shadow-2xl gap-2"
       />
       <div className="-translate-y-44">
         {albumSongs.length > 0 ? (

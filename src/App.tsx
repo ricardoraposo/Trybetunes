@@ -13,19 +13,21 @@ function App() {
   });
 
   return (
-    <Routes>
-      <Route path="/" element={ <Login /> } />
-      <Route element={ <Header userInfo={ userInfo } setUserInfo={ setUserInfo } /> }>
-        <Route path="/search" element={ <Search /> } />
-        <Route path="/album/:id" element={ <Album /> } />
-        <Route path="/favorites" element={ <Favorites /> } />
-        <Route path="/profile" element={ <Profile /> } />
-        <Route
-          path="/profile/edit"
-          element={ <EditProfile userInfo={ userInfo } setUserInfo={ setUserInfo } /> }
-        />
-      </Route>
-    </Routes>
+    <div className="font-primary">
+      <Routes>
+        <Route path="/" element={ <Login /> } />
+        <Route element={ <Header userInfo={ userInfo } setUserInfo={ setUserInfo } /> }>
+          <Route path="/search" element={ <Search /> } />
+          <Route path="/album/:id" element={ <Album /> } />
+          <Route path="/favorites" element={ <Favorites /> } />
+          <Route path="/profile" element={ <Profile /> } />
+          <Route
+            path="/profile/edit"
+            element={ <EditProfile userInfo={ userInfo } setUserInfo={ setUserInfo } /> }
+          />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

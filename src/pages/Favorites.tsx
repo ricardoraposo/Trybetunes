@@ -24,8 +24,6 @@ function Favorites() {
     fetchFavoriteMovies();
   }, [toggleFavorite]);
 
-  if (isLoading) return <Loading />;
-
   return (
     <div>
       <div
@@ -34,22 +32,24 @@ function Favorites() {
       >
         Músicas Favoritas
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <div className=" w-1/2">
-          {
-            favoriteSongs.length > 0 && (
-              favoriteSongs.map((song) => (
-                <MusicCard
-                  key={ song.trackId }
-                  song={ song }
-                  toggleFavorite={ handleToggle }
-                  initFav
-                />
-              ))
-            )
-          }
+      {isLoading ? <Loading /> : (
+        <div className="flex flex-col justify-center items-center">
+          <div className=" w-1/2">
+            {
+              favoriteSongs.length > 0 && (
+                favoriteSongs.map((song) => (
+                  <MusicCard
+                    key={ song.trackId }
+                    song={ song }
+                    toggleFavorite={ handleToggle }
+                    initFav
+                  />
+                ))
+              )
+            }
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

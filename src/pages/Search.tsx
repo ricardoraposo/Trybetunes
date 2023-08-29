@@ -44,7 +44,8 @@ function Search() {
           data-testid="search-artist-button"
           disabled={ !validLength }
           onClick={ fetchAlbuns }
-          className="py-4 px-8 rounded-full bg-teal-400 text-xl text-white cursor-pointer"
+          className="py-4 px-8 rounded-full bg-teal-400 text-xl text-white cursor-pointer
+          disabled:bg-teal-400/40 disabled:text-white/40"
         >
           Procurar
         </button>

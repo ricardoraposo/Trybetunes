@@ -38,8 +38,9 @@ function Login() {
             data-testid="login-submit-button"
             disabled={ !validLength }
             onClick={ handleClick }
-            className="p-3 bg-blue-600 text-white
-            rounded-full transition hover:cursor-pointer hover:bg-blue-900"
+            className="p-3 bg-blue-600 text-white rounded-full transition
+            hover:cursor-pointer hover:bg-blue-900 disabled:bg-blue-600/40
+            disabled:text-white/40"
           >
             Entrar
           </button>
