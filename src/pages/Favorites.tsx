@@ -32,7 +32,7 @@ function Favorites() {
       >
         Músicas Favoritas
       </div>
-      {isLoading ? <Loading /> : (
+      {isLoading ? (<div className="mt-32 text-3xl"><Loading /></div>) : (
         <div className="flex flex-col justify-center items-center">
           <div className=" w-1/2">
             {
