@@ -4,11 +4,19 @@ import Loading from '../components/Loading';
 import AlbumCardList from '../components/AlbumCardList';
 import type { AlbumType } from '../types';
 
-function Search() {
+type SearchProps = {
+  state: {
+    searchResults: AlbumType[];
+    searched: boolean;
+    insertSearchResults: (searchReulst: AlbumType[]) => void;
+    setSearched: (searched: boolean) => void;
+  }
+};
+
+function Search({ state }: SearchProps) {
+  const { searchResults, insertSearchResults, searched, setSearched } = state;
   const [artistInput, setArtistInput] = useState('');
   const [artistName, setArtistName] = useState('');
-  const [albumList, setAlbumList] = useState<AlbumType[]>([]);
-  const [searched, setSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const validLength = artistInput.length >= 2;
@@ -20,7 +28,7 @@ function Search() {
     const albuns = await searchAlbumsAPI(artistInput);
 
     setArtistInput('');
-    setAlbumList(albuns);
+    insertSearchResults(albuns);
     setIsLoading(false);
     setSearched(true);
   };
@@ -55,9 +63,9 @@ function Search() {
           <Loading />
         </div>
       )}
-      {searched && !isLoading && albumList.length > 0 ? (
-        <AlbumCardList artistName={ artistName } albumList={ albumList } />
-      ) : searched && !isLoading && albumList.length === 0 && (
+      {searched && !isLoading && searchResults.length > 0 ? (
+        <AlbumCardList artistName={ artistName } albumList={ searchResults } />
+      ) : searched && !isLoading && searchResults.length === 0 && (
         <h2
           className="text-center text-4xl text-gray-300 my-40"
         >

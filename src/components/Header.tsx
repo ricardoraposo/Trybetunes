@@ -27,8 +27,8 @@ function Header({ shouldRefresh }: HeaderProps) {
     <div className="flex h-screen overflow-hidden">
       <header
         data-testid="header-component"
-        className="text-lg flex flex-col w-1/5 bg-transparent
-        justify-between items-center px-12 shadow-lg"
+        className="text-lg flex flex-col w-1/5 bg-transparent justify-between
+        items-center px-12 shadow-lg"
       >
         <div className="mt-3">
           <img src={ trybeTunesLogo } alt="trybetunes logo" className="h-32" />
