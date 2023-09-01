@@ -16,10 +16,10 @@ function Album() {
   useEffect(() => {
     const fetchSongs = async () => {
       if (id) {
-        const songs = await getMusics(id);
+        const [album, ...songs] = await getMusics(id);
         const favorited = await getFavoriteSongs();
-        setAlbumInfo(songs[0]);
-        setAlbumSongs([...songs.slice(1)] as SongType[]);
+        setAlbumInfo(album);
+        setAlbumSongs(songs);
         setFavoritedSongs(favorited);
         setIsLoading(false);
       }
