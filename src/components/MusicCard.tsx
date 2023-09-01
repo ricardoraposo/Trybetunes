@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import checkedheart from '../images/checked_heart.png';
+import checkedHeart from '../images/checked_heart.png';
 import emptyHeart from '../images/empty_heart.png';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import type { SongType } from '../types';
@@ -39,11 +39,7 @@ function MusicCard({ song, initFav, toggleFavorite = null }: MusicCardProps) {
             data-testid={ `checkbox-music-${song.trackId}` }
             htmlFor={ `favorited-${song.trackId}` }
           >
-            {
-              favorited
-                ? (<img src={ checkedheart } alt="favorite" />)
-                : (<img src={ emptyHeart } alt="favorite" />)
-            }
+            <img src={ favorited ? checkedHeart : emptyHeart } alt="favorite" />
           </label>
           <input
             type="checkbox"
